@@ -43,6 +43,18 @@
             "nome": "davi",
             "email": "davi@em.com",
             "senha": "1234"
+        },
+        {
+            "cpf": "12343123",
+            "nome": "davi cesar",
+            "email": "davicesarmoasi2",
+            "senha": "dasesdajj"
+        },
+        {
+            "cpf": "231332131",
+            "nome": "dadad",
+            "email": "dadad",
+            "senha": "sdada"
         }
     ],
     "pedidos": [
