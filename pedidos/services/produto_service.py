@@ -7,7 +7,7 @@ class ProdutoService:
     
     def __str__(self):
         return str(self.__produtos)
-    
+        
     def listar(self) -> None:
         for produto in self.__produtos.values():
             print(produto)

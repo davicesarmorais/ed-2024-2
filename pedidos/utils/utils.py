@@ -20,3 +20,6 @@ def limpar_tela() -> None:
         subprocess.run("cls", shell=True)
     else:
         subprocess.run("clear", shell=True)
+
+def prosseguir() -> None:
+    input("Aperte qualquer tecla para prosseguir...")

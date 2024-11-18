@@ -1,13 +1,15 @@
+from utils import *
+
 class Produto:
-    def __init__(self, id_produto: int, descricao: str, preco: float):
-        if not self.validar_id(id_produto):
-            raise ValueError("ID inválido")
-        if not self.validar_descricao(descricao):
+    __serial = 0
+    
+    def __init__(self, descricao: str = None, preco: float = None):
+        if descricao is not None and not self.validar_descricao(descricao):
             raise ValueError("Descricão inválida")
-        if not self.validar_preco(preco):
+        if preco is not None and not self.validar_preco(preco):
             raise ValueError("Preço inválido")
         
-        self.__id = id_produto
+        self.__id = Produto.__serial + 1
         self.__descricao = descricao
         self.__preco = preco
     
@@ -25,7 +27,7 @@ class Produto:
 
     def __hash__(self) -> int:
         return hash(self.id) 
-           
+
     @property
     def id(self) -> int:
         return self.__id
@@ -38,26 +40,26 @@ class Produto:
     def preco(self) -> float:
         return round(self.__preco, 2)
     
-    @id.setter
-    def id(self, id_produto: int):
-        if not self.validar_id(id_produto):
-            raise ValueError("ID inválido")
+    # @id.setter
+    # def id(self, id_produto: int):
+    #     if not self.validar_id(id_produto):
+    #         raise ValueError("ID inválido")
         
-        self.__id = id_produto
+    #     self.id = id_produto
         
     @descricao.setter
     def descricao(self, descricao: str):
         if self.validar_descricao(descricao):
             raise ValueError("Descricão inválida")
         
-        self.__descricao = descricao
+        self.descricao = descricao
         
     @preco.setter
     def preco(self, preco: float):
         if not self.validar_preco(preco):
             raise ValueError("Preço inválido")
         
-        self.__preco = preco
+        self.preco = preco
         
     @staticmethod
     def validar_preco(preco: float) -> bool:

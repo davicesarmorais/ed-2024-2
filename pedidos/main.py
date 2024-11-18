@@ -5,7 +5,8 @@ from view import *
 
 
 def main():
-    MenuPrincipal().interact()
+    contexto = Contexto()    
+    MenuPrincipal(contexto).interact()
 
 
 if __name__ == "__main__":

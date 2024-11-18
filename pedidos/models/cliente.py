@@ -1,17 +1,17 @@
 import re
 
 class Cliente:
-    def __init__(self, cpf: str, nome: str, email: str, senha: str) -> None:
-        if not self.validar_cpf(cpf):
+    def __init__(self, cpf: str = None, nome: str = None, email: str = None, senha: str = None) -> None:
+        if cpf is not None and not self.validar_cpf(cpf):
             raise ValueError("CPF inválido")
         
-        if not isinstance(nome, str) or not nome.strip():
+        if nome is not None and not isinstance(nome, str) or not nome.strip():
             raise ValueError("Nome inválido")
         
-        if not self.validar_email(email):
+        if email is not None and not self.validar_email(email):
             raise ValueError("Email inválido")
         
-        if not self.validar_senha(senha):
+        if senha is not None and not self.validar_senha(senha):
             raise ValueError("Senha inválida")
         
         self.__cpf = cpf

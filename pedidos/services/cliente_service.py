@@ -4,10 +4,10 @@ from utils.utils import *
 class ClienteService:
     def __init__(self):
         self.__clientes: dict = carregar('data/clientes.bin')
-    
+
     def __str__(self):
         return str(self.__clientes)
-    
+
     def listar(self) -> None:
         for cliente in self.__clientes.values():
             print(cliente)

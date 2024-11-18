@@ -1,5 +1,4 @@
 from .produto import Produto
-from models.cliente import Cliente
 import datetime
 
 class CarrinhoCompras:
@@ -7,7 +6,7 @@ class CarrinhoCompras:
         self.__produtos = {}
 
     def __str__(self) -> str:
-        return f'\n{'-' * 20}\n'.join([
+        return f'\n{"-" * 20}\n'.join([
             f"{produto.__str__()}\nQuantidade: {quantidade}" for produto, quantidade in self.__produtos.items()
             ])
 
@@ -20,17 +19,19 @@ class CarrinhoCompras:
     
 
 class Pedido:
-    def __init__(self, id_pedido: int, cpf_cliente: str, produtos: CarrinhoCompras) -> None:
-        self.__id = id_pedido
+    __serial = 0
+
+    def __init__(self, cpf_cliente: str = None, produtos: CarrinhoCompras = None) -> None:
         self.__cpf = cpf_cliente
         self.__produtos = produtos
         self.__data = datetime.datetime.now().strftime("%d-%m-%Y")
         self.__total_pedido = sum(p.preco * qtd for p, qtd in produtos.items())
+        self.__id = Pedido.__serial + 1
 
     def __str__(self) -> str:
         return '\n'.join([
-            f"ID PEDIDO: {self.id_pedido}",
-            f"Nome do cliente: {self.cpf_cliente}", 
+            f"ID PEDIDO: {self.id}",
+            f"CPF do cliente: {self.cpf_cliente}", 
             f"Total: R$ {self.total_pedido:.2f}", 
             f"Data: {self.data}",
             f"Produtos Selecionados: \n{self.produtos}", 
@@ -38,14 +39,14 @@ class Pedido:
         
     def __eq__(self, other) -> bool:
         if isinstance(other, Pedido):
-            return self.id_pedido == other.id_pedido
+            return self.id == other.id
         return False
 
     def __hash__(self) -> int:
-        return hash(self.id_pedido) 
+        return hash(self.id) 
 
     @property
-    def id_pedido(self) -> int:
+    def id(self) -> int:
         return self.__id
     
     @property
@@ -64,7 +65,17 @@ class Pedido:
     def data(self) -> str:
         return self.__data
     
-    
+    # @id.setter
+    # def id(self, id: int):
+    #     if not self.validar_id(id):
+    #         raise ValueError("ID inválido")
+
+    #     self.id = id
+
+    @staticmethod
+    def validar_id(id_produto: int) -> bool:
+        return isinstance(id_produto, int)
+
 if __name__ == "__main__":
     produtos_selecionados = {
         Produto(1, "1", 1.0): 1,
