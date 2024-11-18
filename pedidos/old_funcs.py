@@ -1,6 +1,5 @@
 import os
 import time
-from objetos import Usuario, Produto, Pedido
 from data import Data
 
 
@@ -177,7 +176,7 @@ def cadastrar_usuario(data: Data) -> None:
 
         atributos[atributo] = entrada
 
-    usuario = Usuario(**atributos)
+    usuario = Usuario(**atributos) # type: ignore
     data.cadastrar(usuario)
     print("Usuário cadastrado com sucesso.")
     return
@@ -199,7 +198,7 @@ def cadastrar_produto(data: Data) -> None:
 
         atributos[atributo] = entrada
 
-    produto = Produto(**atributos)
+    produto = Produto(**atributos) # type: ignore
     data.cadastrar(produto)
     print("Produto cadastrado com sucesso.")
     return
@@ -239,7 +238,7 @@ def cadastrar_pedido(data: Data) -> None:
             continue
 
         if (id_produto == "0") and produtos_ids:
-            pedido = Pedido(cpf, produtos_ids, total_pedido)
+            pedido = Pedido(cpf, produtos_ids, total_pedido) # type: ignore
             data.cadastrar(pedido)
             print("Pedido criado com sucesso.")
             return
