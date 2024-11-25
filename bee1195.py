@@ -4,62 +4,77 @@ class Node:
         self.right = None
         self.left = None
 
+    def add_left(self, data):
+        if self.left is None:
+            self.left = Node(data)
+    
+    def add_right(self, data):
+        if self.right is None:
+            self.right = Node(data)
+
 class BinaryTree:
     def __init__(self):
         self.root = None
 
-    def prefixo(self):
-        pass
-    
-    def infixo(self):
-        pass
-    
-    def posfixo(self):
-        pass
-    
     def add(self, data):
         if self.root is None:
             self.root = Node(data)
             return
         
-        current = self.root
-        while current:
-            if data > current.data:
-                if current.right is None:
-                    break
-                current = current.right
+        self._add(data, self.root)
+    
+    
+    def _add(self, data, current):
+        if data < current.data:
+            if current.left is not None:
+                self._add(data, current.left)
             else:
-                if current.left is None:
-                    break
-                current = current.left
-        
-        new_node = Node(data)
-        if data > current.data:
-            current.right = new_node
+                current.add_left(data)
         else:
-            current.left = new_node
+            if current.right is not None:
+                self._add(data, current.right)
+            else:
+                current.add_right(data)
         
-    def __preorder(self, node):
-        if( node != None):
-            print(f'{node.data} ',end='')
-            self.__preorder(node.left)
-            self.__preorder(node.right)
+    def preorder(self, node, result):
+        if node is not None:
+            result.append(str(node.data))
+            self.preorder(node.left, result)
+            self.preorder(node.right, result)
 
-    def __inorder(self, node):
-        if( node != None):
-            self.__inorder(node.left)
-            print(f'{node.data} ',end='')
-            self.__inorder(node.right)
+    def inorder(self, node, result):
+        if node is not None:
+            self.inorder(node.left, result)
+            result.append(str(node.data))
+            self.inorder(node.right, result)
 
-    def __postorder(self, node):
-        if( node != None):
-            self.__postorder(node.left)
-            self.__postorder(node.right)
-            print(f'{node.data} ',end='')
+    def postorder(self, node, result):
+        if node is not None:
+            self.postorder(node.left, result)
+            self.postorder(node.right, result)
+            result.append(str(node.data))
 
-tree = BinaryTree()
-a = [8, 3, 10, 14, 6, 4, 13, 7, 1]
-for i in a:
-    tree.add(i)
 
-tree.print_right()
+n = int(input())
+for case in range(n):
+    qtd = int(input())
+    
+    tree = BinaryTree()
+    numbers = map(int, input().split())
+    for i in numbers:
+        tree.add(i)
+
+    print(f"Case {case+1}:")
+    pre, ino, post = [], [], []
+    tree.preorder(tree.root, pre)
+    tree.inorder(tree.root, ino)
+    tree.postorder(tree.root, post)
+    print("Pre.: ", end='')
+    print(' '.join(pre))
+    print("In..: ", end='')
+    print(' '.join(ino))
+    print("Post: ", end='')
+    print(' '.join(post))
+    print()
+    
+    
