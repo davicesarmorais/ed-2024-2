@@ -41,6 +41,7 @@ class DoublyLinkedList:
             else:
                 print(current.data, end=" -> ")
             current = current.prev
+
     def append(self, data):
         new_node = Node(data)
         
@@ -71,30 +72,76 @@ class DoublyLinkedList:
         pass  # Insere na posição
 
     def remove(self, data):
-        pass  # Remove o primeiro nó com o dado
+        if len(self) == 1:
+            self.pop()
+
+        node = self.find(data)
+        if node is None:
+            return None
+        
+        # TODO
 
     def pop(self):
+        if len(self) == 0:
+            return None
+        
         if len(self) == 1:
             removed = self.head.data
             self.head = None
             self.tail = None
             self.__size -= 1
             return removed
-
-        if len(self) > 1:
-            removed = self.tail.data
-            self.tail.prev.next = None
-            self.tail = self.tail.prev
-            self.__size -= 1
-            return removed
+    
+        removed = self.tail.data
+        self.tail.prev.next = None
+        self.tail = self.tail.prev
+        self.__size -= 1
+        return removed
 
             
-
     def pop_left(self):
-        pass  # Remove o primeiro nó
+        if len(self) == 0:
+            return None
+        
+        if len(self) == 1:
+            self.pop()
+
+        removed = self.head.data
+        self.head.next.prev = None
+        self.head = self.head.next
+        self.__size -= 1
+        return removed
+        
 
     def find(self, data):
-        pass  # Retorna o nó com o dado
+        from_left = self._find_from_left(self.head, data)
+        from_right = self._find_from_right(self.tail, data)
+        
+        if from_left is not None:
+            return from_left
+        if from_right is not None:
+            return from_right
+
+        return None
+    
+        
+    def _find_from_left(self, node, data):
+        if node is None:
+            return None
+        
+        if node.data == data:
+            return node
+
+        return self._find_from_left(node.next, data)
+
+    def _find_from_right(self, node, data):
+        if node is None:
+            return None
+        
+        if node.data == data:
+            return node
+
+        return self._find_from_right(node.prev, data)
 
     def is_empty(self):
         return self.size == 0
@@ -107,16 +154,20 @@ dbll.prepend(1)
 dbll.append(4)
 dbll.append(5)
 dbll.show_forward()
-dbll.show_backward()
-dbll.pop()
-dbll.show_forward()
-dbll.show_backward()
-dbll.pop()
-dbll.show_forward()
-dbll.show_backward()
-dbll.pop()
-dbll.show_forward()
-dbll.show_backward()
-dbll.pop()
-dbll.show_forward()
-dbll.show_backward()
+
+
+
+# dbll.pop()
+# dbll.show_forward()
+# dbll.pop_left()
+# dbll.show_forward()
+# dbll.show_backward()
+# dbll.pop()
+# dbll.show_forward()
+# dbll.show_backward()
+# dbll.pop()
+# dbll.show_forward()
+# dbll.show_backward()
+# dbll.pop()
+# dbll.show_forward()
+# dbll.show_backward()
