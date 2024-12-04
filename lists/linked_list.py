@@ -13,10 +13,7 @@ class LinkedList:
         s = ''
         current = self.head
         while current:
-            if s != '':
-                s += ' -> '
-            
-            s += str(current.data)
+            s += f"{' -> ' if s != '' else ''}{current.data}"
             current = current.next
         return s
     
