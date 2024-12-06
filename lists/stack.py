@@ -19,6 +19,12 @@ class Stack:
             current = current.next
         return s
     
+    def __iter__(self):
+        current = self.top
+        while current:
+            yield current.data
+            current = current.next
+
     def __len__(self):
         return self.__size
         
@@ -46,11 +52,14 @@ class Stack:
     def is_empty(self):
         return len(self) == 0
     
-stack = Stack()
-stack.peek()
-stack.push(1)
-print(stack)
-stack.push(2)
-print(stack)
-stack.push(3)
-print(stack)
+
+if __name__ == "__main__":
+    stack = Stack()
+    stack.push(1)
+    print(stack)
+    stack.push(2)
+    print(stack)
+    stack.push(3)
+    print(stack)
+    for i in stack:
+        print(i)
