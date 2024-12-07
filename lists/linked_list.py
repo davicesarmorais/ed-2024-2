@@ -109,36 +109,38 @@ class LinkedList:
         return index
 
 
-comandos = [
-    ["prepend", 3],
-    ["prepend", 2],
-    ["prepend", 1],
-    ["append", 4],
-    ["append", 5],
-    ["pop"],
-    ["prepend", 2],
-    ["insert", 6, 4],
-    ["pop_left"],
-    ["insert", 0, 0],
-]
+
+if __name__ == "__main__":
+    comandos = [
+        ["prepend", 3],
+        ["prepend", 2],
+        ["prepend", 1],
+        ["append", 4],
+        ["append", 5],
+        ["pop"],
+        ["prepend", 2],
+        ["insert", 6, 4],
+        ["pop_left"],
+        ["insert", 0, 0],
+    ]
 
 
-ll = LinkedList()
-for idx, i in enumerate(comandos ,start=1):
-    print(f"{idx}. {i[0]}({', '.join(str(x) for x in i[1:])}) ".ljust(40, '-'))
-    print("\t{ Lista antes } { len:", len(ll), "}")
-    if len(ll) > 0:
-        print('\t', ll, sep='')
-    else:
-        print('\tLista vazia')
-    
-    print("\n\tRetorno do metodo: ", end='')
-    print(getattr(ll, i[0])(*i[1:]))
-    
-    print("\n\t{ Lista Depois } { len:", len(ll), "}")
-    if len(ll) > 0:
-        print('\t', ll, sep='')
-    else:
-        print('\tLista vazia')
-    print('\n')
-    
+    ll = LinkedList()
+    for idx, i in enumerate(comandos ,start=1):
+        print(f"{idx}. {i[0]}({', '.join(str(x) for x in i[1:])}) ".ljust(40, '-'))
+        print("\t{ Lista antes } { len:", len(ll), "}")
+        if len(ll) > 0:
+            print('\t', ll, sep='')
+        else:
+            print('\tLista vazia')
+        
+        print("\n\tRetorno do metodo: ", end='')
+        print(getattr(ll, i[0])(*i[1:]))
+        
+        print("\n\t{ Lista Depois } { len:", len(ll), "}")
+        if len(ll) > 0:
+            print('\t', ll, sep='')
+        else:
+            print('\tLista vazia')
+        print('\n')
+        

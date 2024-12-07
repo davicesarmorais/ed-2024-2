@@ -146,28 +146,30 @@ class DoublyLinkedList:
     def is_empty(self):
         return self.size == 0
 
-dbll = DoublyLinkedList()
 
-dbll.append(2)
-dbll.append(3)
-dbll.prepend(1)
-dbll.append(4)
-dbll.append(5)
-dbll.show_forward()
+if __name__ == "__main__":
+    dbll = DoublyLinkedList()
+
+    dbll.append(2)
+    dbll.append(3)
+    dbll.prepend(1)
+    dbll.append(4)
+    dbll.append(5)
+    dbll.show_forward()
 
 
 
-# dbll.pop()
-# dbll.show_forward()
-# dbll.pop_left()
-# dbll.show_forward()
-# dbll.show_backward()
-# dbll.pop()
-# dbll.show_forward()
-# dbll.show_backward()
-# dbll.pop()
-# dbll.show_forward()
-# dbll.show_backward()
-# dbll.pop()
-# dbll.show_forward()
-# dbll.show_backward()
+    # dbll.pop()
+    # dbll.show_forward()
+    # dbll.pop_left()
+    # dbll.show_forward()
+    # dbll.show_backward()
+    # dbll.pop()
+    # dbll.show_forward()
+    # dbll.show_backward()
+    # dbll.pop()
+    # dbll.show_forward()
+    # dbll.show_backward()
+    # dbll.pop()
+    # dbll.show_forward()
+    # dbll.show_backward()

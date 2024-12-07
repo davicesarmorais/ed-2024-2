@@ -29,7 +29,7 @@ class Stack:
     def is_empty(self):
         return len(self) == 0
 
-def prioridade(operacao):
+def prioridade(operacao: str):
     prioridade = {
         "(": 1,
         ")": 1,
@@ -42,12 +42,12 @@ def prioridade(operacao):
     return prioridade.get(operacao)
 
 
-def eh_operando(char):
+def eh_operando(char: str):
     if prioridade(char) is None:
         return True
     return False
 
-def eh_operador(char):
+def eh_operador(char: str):
     if eh_operando(char):
         return False
     return True
@@ -58,29 +58,20 @@ def in_to_pos(operacao: str):
     for char in operacao:
         if eh_operando(char):
             pos += char
-            continue
-
-        if char == "(":
+        elif char == "(":
             pilha.push(char)
-            continue
-
-        if char == ")":
+        elif char == ")":
             while pilha.peek() != "(":
                 pos += pilha.pop()
             pilha.pop()
-            continue
-
-        
-        while (not pilha.is_empty()) and prioridade(char) <= prioridade(pilha.peek()):
-            pos += pilha.pop()
-
-        if pilha.is_empty() or prioridade(char) > prioridade(pilha.peek()):
+        else:
+            while (not pilha.is_empty()) and prioridade(char) <= prioridade(pilha.peek()):
+                pos += pilha.pop()
             pilha.push(char)
-
 
     while not pilha.is_empty():
         pos += pilha.pop()
-            
+    
     return pos
 
 
@@ -89,4 +80,4 @@ for _ in range(n):
     expressao = input().strip()
     print(in_to_pos(expressao))
 
-        
+    

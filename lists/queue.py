@@ -52,18 +52,20 @@ class Queue:
             raise QueueError("Queue is empty")
         return self.head.data
     
-fila = Queue()
+    
+if __name__ == "__main__":
+    fila = Queue()
 
-fila.enqueue(1)
-print(fila)
-fila.enqueue(2)
-print(fila)
-fila.enqueue(3)
-print(fila)
+    fila.enqueue(1)
+    print(fila)
+    fila.enqueue(2)
+    print(fila)
+    fila.enqueue(3)
+    print(fila)
 
-fila.dequeue()
-print(fila)
-fila.dequeue()
-print(fila)
-fila.dequeue()
-print(fila)
+    fila.dequeue()
+    print(fila)
+    fila.dequeue()
+    print(fila)
+    fila.dequeue()
+    print(fila)
