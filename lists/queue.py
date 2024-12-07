@@ -13,7 +13,15 @@ class Queue:
         self.size = 0
         
     def __str__(self):
-        pass
+        if self.is_empty():
+            return "Empty"
+        
+        s = ""
+        current = self.head
+        while current:
+            s += f"{' -> ' if s != '' else ''}{current.data}"
+            current = current.next
+        return s
     
     def __len__(self):
         return self.size
@@ -22,11 +30,40 @@ class Queue:
         return self.size == 0
     
     def enqueue(self, data):
-        pass
+        if self.is_empty():
+            self.head = Node(data)
+            self.tail = self.head
+        else:
+            self.tail.next = Node(data)
+            self.tail = self.tail.next
+        self.size += 1
     
     def dequeue(self):
         if self.is_empty():
             raise QueueError("Queue is empty")
+        
+        removed = self.head.data
+        self.head = self.head.next
+        self.size -= 1
+        return removed
     
     def peek(self):
-        pass
+        if self.is_empty():
+            raise QueueError("Queue is empty")
+        return self.head.data
+    
+fila = Queue()
+
+fila.enqueue(1)
+print(fila)
+fila.enqueue(2)
+print(fila)
+fila.enqueue(3)
+print(fila)
+
+fila.dequeue()
+print(fila)
+fila.dequeue()
+print(fila)
+fila.dequeue()
+print(fila)
