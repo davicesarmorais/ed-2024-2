@@ -14,14 +14,15 @@ class Queue:
         
     def __str__(self):
         if self.is_empty():
-            return "Empty"
+            return "Fila vazia"
         
-        s = ""
+        return " <- ".join(str(data) for data in self)
+    
+    def __iter__(self):
         current = self.head
         while current:
-            s += f"{' -> ' if s != '' else ''}{current.data}"
+            yield current.data
             current = current.next
-        return s
     
     def __len__(self):
         return self.size

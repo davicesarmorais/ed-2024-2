@@ -12,12 +12,10 @@ class Stack:
         self.__size = 0
         
     def __str__(self):
-        s = ''
-        current = self.top
-        while current:
-            s += f"{current.data} {'<- TOP' if s == '' else ''}\n"
-            current = current.next
-        return s
+        if self.is_empty():
+            return "Pilha vazia"
+        
+        return ' -> '.join(str(data) for data in self)
     
     def __iter__(self):
         current = self.top
