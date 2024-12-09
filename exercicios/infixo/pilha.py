@@ -7,6 +7,18 @@ class Stack:
     def __init__(self):
         self.top = None
         self.__size = 0
+        
+    def __str__(self):
+        reversed_stack = Stack()
+        for data in self:
+            reversed_stack.push(data)
+        return f"[{', '.join(str(data) for data in reversed_stack)}]"
+
+    def __iter__(self):
+        cursor = self.top
+        while cursor:
+            yield cursor.data
+            cursor = cursor.next
 
     def __len__(self):
         return self.__size
