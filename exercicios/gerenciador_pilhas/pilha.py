@@ -73,7 +73,9 @@ class Stack:
         while not pilha2.is_empty():
             self.push(pilha2.pop())
             
-    def __transfere_elementos(pilha: 'Stack', aux1: 'Stack', aux2: 'Stack', pilha_final: 'Stack') -> None:
+    def __transfere_elementos(pilha: 'Stack', pilha_final: 'Stack') -> None:
+        aux1 = Stack()
+        aux2 = Stack()
         while not pilha.is_empty():
             aux1.push(pilha.pop())
             aux2.push(aux1.peek())
@@ -83,12 +85,10 @@ class Stack:
             
     @classmethod
     def concatena_pilhas(cls, pilha1: 'Stack', pilha2: 'Stack') -> 'Stack':
-        aux1 = Stack()
-        aux2 = Stack()
         pilha_final = Stack()
         
-        cls.__transfere_elementos(pilha1, aux1, aux2, pilha_final)
-        cls.__transfere_elementos(pilha2, aux1, aux2, pilha_final)
+        cls.__transfere_elementos(pilha1, pilha_final)
+        cls.__transfere_elementos(pilha2, pilha_final)
         
         return pilha_final
     
